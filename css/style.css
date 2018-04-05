@@ -30,15 +30,18 @@ nav {
     top: 100px;
 }
 .knap {
-    padding: 10px;
-    margin: 25px 5px;
+    padding: 30px 10px;
+    margin: 7px 0;
     font-size: 20px;
-    background-color: #163318;
-    border-radius: 10px;
-    border: 2px solid #102411;
+    background-color: #212121;
+    border-radius: 3px;
+    border: 2px solid #4b4b4b;
     color: #a9a9a9;
     cursor: pointer;
-    
+    transition: background-color .3s ease; 
+}
+.knap:hover {
+    background-color: #4b4b4b;
 }
 .marker {
     background-image: url(../images/icon.png);
@@ -50,7 +53,7 @@ nav {
     
 }
 .mapboxgl-popup {
-  max-width: 200px;
+  max-width: 300px;
 }
 
 .mapboxgl-popup-content {
