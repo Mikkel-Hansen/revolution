@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0">
+    <title>REVOLUTION</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="icon" href="images/icon.png">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+    <header>
+        <div>
+        <img src="images/revolution2.png">
+        </div>
+        <nav>
+            <button id="knap1" class="knap">1 - Atlanta</button>
+            <button id="knap2" class="knap">2 - Wilmington</button>
+            <button id="knap3" class="knap">3 - Wilmington</button>
+            <button id="knap4" class="knap">4 - Rusk</button>
+            <button id="knap5" class="knap">5 - Bartlett</button>
+        </nav>
+    </header>
+
+    <div id="map">
+    </div>
+
+
+    <footer>
+
+    </footer>
+
+    <!-- JS + jQuery -->
+    <script src="#"></script>
+
+    <!-- Scripts -->
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWlra2VsLWhhbnNlbiIsImEiOiJjamZqZDE4bjA1YTB5MzJwbmY4dTNldWd3In0.jco5J0Ew-nEQtVzRIBnyzw';
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mikkel-hansen/cjfjdkaaneh5x2sp6y3lug7yr',
+            center: [-87.858051, 32.432701],
+            zoom: 3
+        });
+
+        var geojson = {
+            type: 'FeatureCollection',
+            features: [{
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-84.345640, 33.705240],
+                    },
+                    properties: {
+                        title: 'Atlanta - Georgia',
+                        description: 'Første afsnit af sæson 1 foregår på en lille gård heromkring.',
+                    }
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-77.949691, 34.243238]
+                    },
+                    properties: {
+                        title: 'Wilmington - North Carolina',
+                        description: 'Resten af serien foregår mellem her og Atlanta. Dog er de fleste scener filmet nær flodbreden i Wilmington.'
+                    }
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-77.971537, 34.294310]
+                    },
+                    properties: {
+                        title: 'Wilmington - North Carolina',
+                        description: 'Mange scener er også optaget i studiet som ligger her, en smule nordvest for Wilmington.'
+                    }
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-97.432916, 30.791955]
+                    },
+                    properties: {
+                        title: 'Bartlett - Texas',
+                        description: 'Mod enden af anden sæson, er mange scener optaget nær Austin, da byen spiller en stor rolle i serien.'
+                    }
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-95.144854, 31.792130]
+                    },
+                    properties: {
+                        title: 'Rusk - Texas',
+                        description: 'Det meste af anden sæson er optaget i texas.'
+                    }
+                }
+            ]
+        };
+
+        // add markers to map
+        geojson.features.forEach(function(marker) {
+
+            // create a HTML element for each feature
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(new mapboxgl.Popup({
+                        offset: 25
+                    }) // add popups
+                    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                .addTo(map);
+        });
+    </script>
+    <script>
+        document.getElementById('knap1').addEventListener('click', function() {
+            // Fly to a random location by offsetting the point -74.50, 40
+            // by up to 5 degrees.
+            map.flyTo({
+                center: [-84.345640, 33.705240],
+                zoom: 12
+
+            });
+        });
+        document.getElementById('knap2').addEventListener('click', function() {
+            // Fly to a random location by offsetting the point -74.50, 40
+            // by up to 5 degrees.
+            map.flyTo({
+                center: [-77.949691, 34.243238],
+                zoom: 12
+
+            });
+        });
+        document.getElementById('knap3').addEventListener('click', function() {
+            // Fly to a random location by offsetting the point -74.50, 40
+            // by up to 5 degrees.
+            map.flyTo({
+                center: [-77.971537, 34.294310],
+                zoom: 12
+
+            });
+        });
+        document.getElementById('knap4').addEventListener('click', function() {
+            // Fly to a random location by offsetting the point -74.50, 40
+            // by up to 5 degrees.
+            map.flyTo({
+                center: [-95.144854, 31.792130],
+                zoom: 12
+
+            });
+        });
+        document.getElementById('knap5').addEventListener('click', function() {
+            // Fly to a random location by offsetting the point -74.50, 40
+            // by up to 5 degrees.
+            map.flyTo({
+                center: [-97.432916, 30.791955],
+                zoom: 12
+
+            });
+        });
+    </script>
+</body>
+
+</html>
